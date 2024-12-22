@@ -1,0 +1,8 @@
+package com.moja.banka.bankingsystem.exceptions;
+
+public class OibNotFoundException extends RuntimeException{
+
+    public OibNotFoundException(String message) {
+        super(message);
+    }
+}

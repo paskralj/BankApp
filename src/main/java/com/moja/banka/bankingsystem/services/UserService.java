@@ -1,6 +1,7 @@
 package com.moja.banka.bankingsystem.services;
 
 import com.moja.banka.bankingsystem.entities.UserEntity;
+import com.moja.banka.bankingsystem.exceptions.OibNotFoundException;
 import com.moja.banka.bankingsystem.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,10 @@ public class UserService {
     }
 
     public void registerUser(UserEntity user) {
-        //TODO: Dodati validaciju korisnika
         userRepository.save(user);
+    }
+
+    public UserEntity findUserByOib(String oib) {
+        return userRepository.findByOib(oib).orElseThrow(() -> new OibNotFoundException("User not found with oib: " + oib));
     }
 }

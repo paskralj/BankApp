@@ -6,10 +6,7 @@ import com.moja.banka.bankingsystem.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
@@ -31,5 +28,15 @@ public class UserController {
         return ResponseEntity.ok("User registered successfully, memorize your user id: " + user.getOib());
     }
 
+    @GetMapping("/oib/{oib}")
+    public ResponseEntity<String> getUserByOib(@PathVariable String oib) {
+        UserEntity user = userService.findUserByOib(oib);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok("There is a user with that oib: " + oib);
+    }
+
+    //TODO: Modificiati getUserByOib, tako da provjerimo jeli postoji i to samo admin moze provjeriti a ne user!
 
 }
