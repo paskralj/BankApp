@@ -28,7 +28,7 @@ public class UserController {
     public ResponseEntity<String> registerUser(@RequestBody UserRegistrationDTO userRegistrationDTO) {
         UserEntity user = userRegistrationDTO.toUserEntity(passwordEncoder);
         userService.registerUser(user);
-        return ResponseEntity.ok("User registered successfully, memorize your user id" + user.getId());
+        return ResponseEntity.ok("User registered successfully, memorize your user id: " + user.getId());
     }
 
 
