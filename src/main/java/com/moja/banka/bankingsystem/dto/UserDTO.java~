@@ -1,0 +1,4 @@
+package com.moja.banka.bankingsystem.dto;
+
+public class UserDTO {
+}
