@@ -43,6 +43,10 @@ public class UserEntity {
     @NotNull(message = "Date of birth is required")
     private LocalDate dateOfBirth;
 
+    @NotBlank(message = "Username is required")
+    @Column(unique = true, nullable = false)
+    private String username;
+
     @NotBlank(message = "Password is required")
     private String password;
     private LocalDateTime createdAt;

@@ -21,10 +21,11 @@ public class UserRegistrationDTO {
     private String phoneNumber;
     private String address;
     private LocalDate dateOfBirth;
+    private String username;
     private String password;
     private String oib;
 
-    public UserEntity toUserEntity(PasswordEncoder passwordEncoder) {
+    public UserEntity toUserEntity() {
         UserEntity user = new UserEntity();
         user.setFirstName(firstName);
         user.setLastName(lastName);
@@ -32,7 +33,8 @@ public class UserRegistrationDTO {
         user.setPhoneNumber(phoneNumber);
         user.setAddress(address);
         user.setDateOfBirth(dateOfBirth);
-        user.setPassword(passwordEncoder.encode(this.password));
+        user.setUsername(username);
+        user.setPassword(password);
         user.setOib(oib);
 
         user.setStatus(UserStatus.ACTIVE);
