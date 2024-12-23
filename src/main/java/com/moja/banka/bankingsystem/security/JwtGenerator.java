@@ -1,7 +1,10 @@
 package com.moja.banka.bankingsystem.security;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -33,5 +36,19 @@ public class JwtGenerator {
         byte[] bytes = new byte[64];
         secureRandom.nextBytes(bytes);
         return new SecretKeySpec(bytes, "HmacSHA512");
+    }
+
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload();
+            return true;
+        } catch (Exception e) {
+            throw new AuthenticationCredentialsNotFoundException("Jwt was expired or incorrect. ");
+        }
+    }
+
+    public String getUsernameFromJwt(String token) {
+        Claims claims = Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload();
+        return claims.getSubject();
     }
 }
