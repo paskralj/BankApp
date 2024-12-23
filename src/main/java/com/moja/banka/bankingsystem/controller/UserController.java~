@@ -58,7 +58,7 @@ public class UserController {
     }
 
     @GetMapping("/oib/{oib}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<String> getUserByOib(@PathVariable String oib) {
         UserEntity user = userService.findUserByOib(oib);
         if (user == null) {
