@@ -31,7 +31,7 @@ public class UserService {
         return userRepository.findByOib(oib).orElseThrow(() -> new OibException("User not found with oib: " + oib));
     }
 
-    public boolean checkIfUserExists(String oib) {
+    private boolean checkIfUserExists(String oib) {
         return userRepository.existsByOib(oib);
     }
 }
