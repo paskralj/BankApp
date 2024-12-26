@@ -1,7 +1,9 @@
 package com.moja.banka.bankingsystem.entities;
 
 import com.moja.banka.bankingsystem.enums.AccountType;
+import com.moja.banka.bankingsystem.enums.CurrencyType;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -19,11 +21,16 @@ public class AccountEntity {
     @ManyToOne
     private UserEntity user;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
 
+    @NotNull
     private BigDecimal balance;
-    private String currency;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private CurrencyType currency;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
