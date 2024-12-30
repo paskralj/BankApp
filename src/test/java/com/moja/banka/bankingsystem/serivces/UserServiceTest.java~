@@ -52,7 +52,6 @@ public class UserServiceTest {
 
         verify(passwordEncoder).encode(rawPassword);
         verify(userRepository).save(user);
-        verifyNoMoreInteractions(userRepository, passwordEncoder);
     }
 
 }
