@@ -33,5 +33,4 @@ public class AccountEntity {
     private CurrencyType currency;
 
     private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 }

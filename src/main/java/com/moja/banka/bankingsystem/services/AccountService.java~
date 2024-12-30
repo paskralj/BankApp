@@ -33,6 +33,7 @@ public class AccountService {
         account.setUser(user);
         account.setBalance(BigDecimal.valueOf(0));
         account.setCreatedAt(LocalDateTime.now());
+        account.setUpdatedAt(LocalDateTime.now());
         account.setAccountType(accountDto.getAccountType());
         account.setCurrency(accountDto.getCurrency());
         accountRepository.save(account);

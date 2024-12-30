@@ -76,7 +76,16 @@ public class UserController {
     public ResponseEntity<String> getUserAccountsByOib(@PathVariable String oib) {
         UserEntity user = userService.findUserByOib(oib);
         List<AccountEntity> accounts = accountService.getAccountListByUser(user);
-        return ResponseEntity.ok(String.format("There are %s accounts for user %s %s with oib: %s ", accounts.size(), user.getFirstName(), user.getLastName(), user.getOib()));
+
+        StringBuilder responseMessage = new StringBuilder();
+        responseMessage.append(String.format("There are %s accounts for user %s %s with oib: %s%n",
+                accounts.size(), user.getFirstName(), user.getLastName(), user.getOib()));
+
+        for (int i = 0; i< accounts.size(); i++) {
+            responseMessage.append(String.format("%s. Account type: %s, Currency: %s, Balance: %s%n", i+1, accounts.get(i).getAccountType(), accounts.get(i).getCurrency(), accounts.get(i).getBalance()));
+        }
+
+        return ResponseEntity.ok(responseMessage.toString());
     }
 
 }
