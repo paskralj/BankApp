@@ -69,4 +69,7 @@ class AccountServiceTest {
         assertEquals(createAccountDTO.getAccountType(), savedAccount.getAccountType());
         assertEquals(createAccountDTO.getCurrency(), savedAccount.getCurrency());
     }
+
+    // TODO: Dodati jos scearija za CreateAccountForUser kada je
+    //  accountRepository.existsByUserEntityAndAccountType(user, accountType) je true i adaptirati postojeci
 }
