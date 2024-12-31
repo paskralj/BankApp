@@ -18,21 +18,16 @@ public class CardEntity {
     private Long id;
 
     @ManyToOne
-    @NotBlank
     private UserEntity user;
 
     @ManyToOne
-    @NotBlank
     private AccountEntity account;
 
-    @NotBlank
     @Column(unique = true)
     private String cardNumber;
 
-    @NotBlank
     private LocalDate expirationDate;
 
-    @NotBlank
     private String cvv;
 
     @Enumerated(EnumType.STRING)
